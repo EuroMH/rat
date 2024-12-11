@@ -31,4 +31,4 @@ This private repository is designed to keep track of my malware project!
 ### Documentation:
 - `!help` - Lists all commands and their descriptions.
 
-> **Disclaimer:** This repository is for educational purposes only. Please ensure that you comply with all applicable laws and regulations. Unauthorized access to computers or networks is illegal.
+> **Disclaimer:** This repository is definitly NOT for educational purposes only.
