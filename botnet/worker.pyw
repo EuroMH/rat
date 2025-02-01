@@ -13,7 +13,6 @@ class Controller:
         intents.messages = True  # This enables receiving messages
 
         self.bot = commands.Bot(command_prefix="!", intents=intents)
-        self.bot = commands.Bot(command_prefix="!")
 
     def send_webhook_message(self, message):
         payload = {'content': message}
