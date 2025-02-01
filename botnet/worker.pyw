@@ -9,6 +9,8 @@ class Controller:
         self.webhook_url = webhook_url
         self.bot_token = bot_token
         self.running = False
+
+        # Create intents and enable message content intent
         intents = discord.Intents.default()
         intents.messages = True  # This enables receiving messages
 
@@ -60,6 +62,6 @@ class Controller:
 
 if __name__ == "__main__":
     WEBHOOK_URL = "https://discord.com/api/webhooks/1335341177234264217/KfbTw7q3sBrWYPDwacLgF7Sl-M686NB7o59ZEoyegAzqgg3wKqB-tIID9tePm2pewpfR"
-    BOT_TOKEN = "MTMzNTM0MzYxNDg4NDA1NzEzOQ.GxR_6p.aTY4VKRO9Qc6f6EDaMOJ7hLX5U18AqZllPg70s"
+    BOT_TOKEN = "MTMzNTM0MzYxNDg4NDA1NzEzOQ.GxR_6p.aTY4VKRO9Qc6f6EDaMOJ7hLX5U18AqZllPg70s"  # Replace with your actual bot token
     controller = Controller(WEBHOOK_URL, BOT_TOKEN)
     controller.control_loop()
