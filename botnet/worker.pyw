@@ -9,6 +9,10 @@ class Controller:
         self.webhook_url = webhook_url
         self.bot_token = bot_token
         self.running = False
+        intents = discord.Intents.default()
+        intents.messages = True  # This enables receiving messages
+
+        self.bot = commands.Bot(command_prefix="!", intents=intents)
         self.bot = commands.Bot(command_prefix="!")
 
     def send_webhook_message(self, message):
